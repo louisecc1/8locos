@@ -28,7 +28,9 @@ public:
 	{
 		p = &n_head;
 
-		while (*p && (*p)->n_data == x) {
+		while (*p && (*p)->n_data != x) {
+		/*	if ((*p)->n_next == n_head)
+				break;*/
 			p = &((*p)->n_next);
 			if ((*p) == n_head)
 				break;
@@ -47,10 +49,10 @@ public:
 			n->n_next = n_head;
 			tail = n;
 		}
-		else
+	/*	else
 		{
 			tail->n_next = n_head;
-		}
+		}*/
 	}
 	void recorrer()
 	{
