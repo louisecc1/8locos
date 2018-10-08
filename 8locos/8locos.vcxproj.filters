@@ -21,13 +21,10 @@
     <ClInclude Include="Game.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Lista_CircularD.h">
+    <ClInclude Include="CPlayer.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Lista_Enlazada_Doble.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="CNode.h">
+    <ClInclude Include="CListaCircular.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
@@ -41,13 +38,10 @@
     <ClCompile Include="Game.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Lista_CircularD.cpp">
+    <ClCompile Include="CPlayer.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Lista_Enlazada_Doble.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="CNode.cpp">
+    <ClCompile Include="CListaCircular.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
