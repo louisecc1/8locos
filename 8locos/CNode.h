@@ -1,14 +1,14 @@
 #pragma once
-template<class T>
+template<class T,class S>
 class CNode
 {
 public:
-	CNode(T data)
-	{
-		n_data = data;
-		n_next = n_prev = nullptr;
-	}
-	CNode<T>*n_next;
-	CNode<T>*n_pre;
+	CNode<T,S>*n_next;
 	T n_data;
+	T n_palo;
+	CNode();
+	CNode(T, S);
+	bool operator <(CNode<T,S>);
+	bool operator==(CNode<T, S>);
 };
+template CNode<int, char>;

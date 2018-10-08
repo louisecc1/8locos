@@ -4,13 +4,13 @@ class Game
 {
 public:
 		Game();
-		void run;
+		//void run;
 private:
 	void processEvents();
 	void update();
 	void render();
 
-	Lista_Enlazada_Doble Baraja;
+	//Lista_Enlazada_Doble Baraja;
 
 };
 
