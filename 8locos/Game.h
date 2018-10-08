@@ -10,7 +10,7 @@ private:
 	void update();
 	void render();
 
-	 
+	Lista_Enlazada_Doble Baraja;
 
 };
 
