@@ -1,16 +1,17 @@
 #pragma once 
-#include "Lista_CircularD.h"
+#include "CListaCircular.h"
+#include "CPlayer.h"
 class Game
 {
 public:
 		Game();
-		//void run;
+		void run();
 private:
 	void processEvents();
 	void update();
 	void render();
-
-	//Lista_Enlazada_Doble Baraja;
+	CListaCircular <CPlayer> players;
+//	Lista_Enlazada_Doble Baraja;
 
 };
 
