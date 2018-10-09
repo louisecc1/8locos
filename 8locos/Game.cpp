@@ -2,12 +2,10 @@
 #include "Game.h"
 
 
-Game::Game()
-	:players()
+Game::Game(int n)
+	:players(),numbPlayers(n),ganador(50*n)
 {
-	int n;
-	cout << "INGRESE LA CANTIDAD DE JUGADORES" << endl;
-	cin >> n;
+	
 	while (n)
 	{
 		int i = 1;
@@ -24,4 +22,26 @@ Game::Game()
 
 	}
 	players.recorrer();
+}/*
+void Game::run()
+{
+	while () {
+
+		while (!t)
+		{
+			processEvents();
+			update();
+			render();
+		}
+	}
 }
+void Game::processEvents()
+{
+
+}
+void Game::update()
+{
+}
+void Game::render()
+{
+}*/

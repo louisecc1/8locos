@@ -4,14 +4,15 @@
 class Game
 {
 public:
-		Game();
+		Game(int);
 		void run();
 private:
 	void processEvents();
 	void update();
 	void render();
 	CListaCircular <CPlayer> players;
-//	Lista_Enlazada_Doble Baraja;
+	int numbPlayers;
+	const int ganador;
 
 };
 
