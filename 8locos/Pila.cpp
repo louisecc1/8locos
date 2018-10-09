@@ -3,6 +3,7 @@
 
 template<class T>
 void Pila<T>::push(T d) {
+	++_size;
 	NodoSimple<T>* nuevo = new NodoSimple<T>(d);
 	if (!cabeza) {
 		cola = nuevo;
@@ -16,6 +17,7 @@ template void Pila<int>::push(int);
 
 template<class T>
 T Pila<T>::pop() {
+	--_size;
 	NodoSimple<T>* temp;
 	T val;
 	if (cabeza == cola) {
@@ -39,3 +41,5 @@ bool Pila<T>::vacia() {
 	return (cabeza == 0);
 }
 template bool Pila<int>::vacia();
+
+template<class T>

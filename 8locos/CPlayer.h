@@ -11,6 +11,7 @@ public:
 	string cp_name;
 	int score;
 	bool state;
+	ListaEnlazada<int, char, CMenor<CNode<int, char> > > mano;
 };
 inline bool operator== (const CPlayer & a, const CPlayer &b)
 	{	return a.cp_name == b.cp_name;}

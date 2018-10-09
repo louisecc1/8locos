@@ -16,6 +16,7 @@ public:
 	CNode<T, S>* eliminarNodo(CNode<T, S>*&);
 	void recorrer();
 	void verPosibles(T,S,T);
+	bool position(int, CNode<T, S>*&);//*******he agregado esto fijate si esta correcto
 };
 template ListaEnlazada<int,char,CMenor<CNode<int,char> > >;
 
