@@ -9,9 +9,11 @@ class ListaEnlazada
 public:
 	~ListaEnlazada();
 	bool buscar(T,S,CNode<T,S> **&);
+	bool buscarNodo(CNode<T,S>*&,CNode<T, S> **&);
 	bool insertar(T,S);
+	bool insertarNodo(CNode<T, S>*&);
 	bool eliminar(T,S);
-	CNode<T, S>* extraer();
+	CNode<T, S>* eliminarNodo(CNode<T, S>*&);
 	void recorrer();
 	void verPosibles(T,S,T);
 };

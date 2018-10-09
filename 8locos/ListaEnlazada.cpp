@@ -16,6 +16,7 @@ ListaEnlazada<T, S, C>::~ListaEnlazada() {
 	}
 }
 
+//Compatibilidad----------------------------------------------------------------
 template<class T, class S, class C>
 bool ListaEnlazada<T, S, C>::buscar(T valor, S palo,CNode<T,S> **& pNodo) {
 	pNodo = &cabeza;
@@ -28,6 +29,15 @@ bool ListaEnlazada<T, S, C>::buscar(T valor, S palo,CNode<T,S> **& pNodo) {
 }
 
 template<class T, class S, class C>
+bool ListaEnlazada<T, S, C>::buscarNodo(CNode<T, S> *&pInfo, CNode<T, S> **& pNodo) {
+	pNodo = &cabeza;
+	while (*pNodo&&cM(*(*pNodo), *pInfo))
+		pNodo = &((*pNodo)->n_next);
+	return  (*pNodo && (*(*pNodo) == *pInfo));
+}
+
+//Compatibilidad----------------------------------------------------------------
+template<class T, class S, class C>
 bool ListaEnlazada<T, S, C>::insertar(T valor,S palo) {
 	CNode<T,S>** pNodo;
 	if (buscar(valor,palo, pNodo))
@@ -38,6 +48,19 @@ bool ListaEnlazada<T, S, C>::insertar(T valor,S palo) {
 	return 1;
 }
 
+
+template<class T, class S, class C>
+bool ListaEnlazada<T, S, C>::insertarNodo(CNode<T, S> *&pInfo) {
+	CNode<T, S>** pNodo;
+	if (buscarNodo(pInfo, pNodo))
+		return 0;
+	//CNode<T, S>* n = new CNode<T, S>(valor, palo);
+	pInfo->n_next = *pNodo;
+	*pNodo = pInfo;
+	return 1;
+}
+
+//Compatibilidad----------------------------------------------------------------
 template<class T, class S, class C>
 bool ListaEnlazada<T, S, C>::eliminar(T valor,S palo) {
 	CNode<T,S>** pNodo;
@@ -49,14 +72,15 @@ bool ListaEnlazada<T, S, C>::eliminar(T valor,S palo) {
 	return 1;
 }
 
-template <class T, class S, class C>
-CNode<T,S>* ListaEnlazada<T, S, C>::extraer() {
-	CNode<T, S>* temp=0;
-	if (cabeza) {
-		temp = cabeza;
-		cabeza = cabeza->n_next;
-	}
-	return temp;
+template<class T, class S, class C>
+CNode<T, S>* ListaEnlazada<T, S, C>::eliminarNodo(CNode<T, S>*& pInfo) {
+	CNode<T, S>** pNodo;
+	if (!buscarNodo(pInfo, pNodo))
+		return 0;
+	//CNode<T, S>* temp = *pNodo;
+	*pNodo = pInfo->n_next;
+	//delete temp;
+	return pInfo;
 }
 
 template<class  T, class S, class C>
