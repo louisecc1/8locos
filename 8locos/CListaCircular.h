@@ -59,7 +59,7 @@ public:
 		CNode<T> **p = &n_head;
 		
 		do {
-			cout << (*p)->n_data << " | ";
+			cout << (*p)->n_data.cp_name << " | ";
 			p = &((*p)->n_next);
 		} while (*p != n_head);
 		cout << endl;
