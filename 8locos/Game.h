@@ -14,19 +14,21 @@ private:
 	void processEvents();
 	void update();
 	void render();
+	void barajar();
 	CListaCircular <CPlayer> players;
 	CListaCircular <CPlayer> ::iterator iplayer;
 
 	CNode<int, char>* baraja[52];
-	Cola<CNode<int, char>*> ret;
-	Pila<CNode<int, char>*> CartMesa;//son las cartas volteadas en la mesa//es decir la pila de descarte;
+	bool check[52];
+	Cola<CNode<int, char>*> mazo;
+	Pila<CNode<int, char>*> cartMesa;//son las cartas volteadas en la mesa//es decir la pila de descarte;
 
 	const int numbPlayers;
 	const int ganador;
 	CNode<int, char>* auxi;//para poder buscar una posicion
-	bool playCarta(false);
-	bool addcarta(false);
-	int valorC;
-	char  paloC;
+	bool playCarta;
+	bool addcarta;
+	int valorC;//valor nodo
+	char  paloC;//palo nodo
 };
 

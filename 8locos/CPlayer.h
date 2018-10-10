@@ -1,12 +1,18 @@
 #pragma once
 #include<iostream>
 #include<string>
+#include "ListaEnlazada.h"
+#include "CMenor.h"
+#include "CNode.h"
 using namespace std;
 class CPlayer
 {
 public:
 	CPlayer() { state = score = 0; }
-	CPlayer(string);	
+	CPlayer(string);
+	void verMano();
+	void ocultarMano();
+	int getNumCartas();
 	
 	string cp_name;
 	int score;

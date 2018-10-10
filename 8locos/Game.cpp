@@ -1,8 +1,18 @@
+#include <time.h>
+#include <stdlib.h>
 #include "pch.h"
 #include "Game.h"
 Game::Game(int n)
 	:players(),numbPlayers(n),ganador(50*n),iplayer(players.begin())
 {	
+	playCarta = false;
+	addcarta = false;
+	for (int i = 0; i <= 12; i++) {
+		for (char c = 'c'; c <= 'f'; c++) {
+			baraja[i * 4 + (c - 'c')] = new CNode<int, char>(i + 1, c);
+			check[i * 4 + (c - 'c')] = 0;
+		}
+	}
 	while (n)
 	{
 		int i = 1;
@@ -23,18 +33,24 @@ Game::Game(int n)
 void Game::run()
 {
 	while (ganador<=(*iplayer).score) {//verifica si el puntaje del ganador de la anterior ronda, es sufuciente para nadar el juego
-		// aqui implementa barajear y q se reinicie  la mando de los jugadores, y tambien se da cartas a los jugadores
-
-
-
-
-		//****wee tambien inicia CartMesa , es decir quita una carta de la baraja y ponle a la pila, CartMesa es la pila de descarte;
-		paloC = CartMesa.cola->dato->n_palo;//dado valor de la carta secada de la baraja para comenzar el juego 
-		valorC = CartMesa.cola->dato->n_data;//
-		(*iplayer).state = false;
+		//barajea el mazo
+		barajar();
+		//repartir cartas
+		iplayer = players.begin();
+		CNode<int, char>* carta;
+		for (int i = 0; i < 8 * numbPlayers; i++) {
+			carta = mazo.pop();
+			(*iplayer).mano.insertarNodo(carta);
+			iplayer++;
+		}
+		//Carta al mazo de descarte
+		cartMesa.push(mazo.pop());
+		paloC = cartMesa.cabeza->dato->n_palo;//dado valor de la carta secada de la baraja para comenzar el juego 
+		valorC = cartMesa.cabeza->dato->n_data;//
+		iplayer.i->n_data.state = false;
 		iplayer = players.begin();//para q el juego siempre comienze con el primer jugador
 		render();
-		while ((*iplayer).state!=true)
+		while ((*iplayer).state !=true)
 		{
 			processEvents();
 			update();
@@ -46,14 +62,15 @@ void Game::run()
 }
 void Game::processEvents()
 {
-	if(CartMesa._size == 1 && CartMesa.cola->dato->n_data == 8  )
+	while(cartMesa._size == 1 && cartMesa.cabeza->dato->n_data == 8  )//verificar while
 	{
-			//se quita la carta de la pila y regresandola a su lista inicial
-			//luego se llama a la funcion barajear
-		paloC = CartMesa.cola->dato->n_palo;
-		valorC = CartMesa.cola->dato->n_data;
-		render();
+		cartMesa.pop();//se quita la carta de la pila y regresandola a su lista inicial
+		barajar();	//luego se llama a la funcion barajear
+		cartMesa.push(mazo.pop());
+		paloC = cartMesa.cola->dato->n_palo;
+		valorC = cartMesa.cola->dato->n_data;
 	}
+	render();
 	playCarta=false;
 	addcarta=false;
 	while (playCarta || addcarta)
@@ -68,12 +85,12 @@ void Game::processEvents()
 			int temp;
 			cin >> temp;
 			auxi = nullptr;
-			if (!((*iplayer).mano.position(temp, auxi)))
+			if (!((*iplayer).mano.position(temp, auxi)))//verificar lista
 				cout << "NO EXISTE ESTA POSICION EN LA MANO" << endl;
 			else if (auxi->n_data == valorC || auxi->n_palo == paloC)
 				playCarta = true;
 			else
-				cout << "NO SE PUEDE AGREGAR ESTA PARTA" << endl;
+				cout << "NO SE PUEDE AGREGAR ESTA CARTA" << endl;
 		}
 		else
 			addcarta = true;
@@ -84,13 +101,9 @@ void Game::update()
 {
 	if (playCarta)
 	{
-		//agrego una carta en la pila de descarte//es decir enCartMesa
-				
-
-
-		//////////////////////////
-		paloC = CartMesa.cola->dato->n_palo;
-		valorC = CartMesa.cola->dato->n_data;
+		cartMesa.push((*iplayer).mano.eliminarNodo(auxi));
+		paloC = cartMesa.cabeza->dato->n_palo;
+		valorC = cartMesa.cabeza->dato->n_data;
 		if (valorC == 8)
 		{
 			cout << "USTED PUEDE CAMBIAR EL PALO A COLOCAR" << endl;
@@ -106,9 +119,32 @@ void Game::update()
 	}
 	if (addcarta) 
 	{
-
+		if(!mazo.vacia()) {
+			CNode<int, char>* carta= mazo.pop();
+			(*iplayer).mano.insertarNodo(carta);
+		}
 	}
 }
 void Game::render()
 {
+	cout << "Carta en mesa:     " <<valorC<<paloC<< endl<<endl;
+	cout << "Mano jugador:" << endl;
+	(*iplayer).mano.recorrer();
+	cout << endl << endl;
+}
+
+void Game::barajar() {
+	mazo.vaciarCola();
+	for (int i = 0; i < 52; i++)
+		check[i] = 0;
+	int t = 0;
+	srand(time(NULL));
+	for (int i = 0; i < 52; i++) {
+		t = rand() % 52;
+		if (check[t] == 0)
+		{
+			check[t] = 1;
+			mazo.push(baraja[t]);
+		}
+	}
 }
