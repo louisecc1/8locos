@@ -10,5 +10,7 @@ public:
 	void push(T);
 	T pop();
 	bool vacia();
+	void print_last();
+	int _size=0;
 };
 template Pila<CNode<int, char>*>;

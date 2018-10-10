@@ -46,6 +46,7 @@ public:
 	{
 		n_head = nullptr;
 	}
+
 	CCNode<T> *n_head;
 	CCNode<T> *tail;
 	typedef iterator_circular<T> iterator;
