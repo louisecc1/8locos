@@ -36,7 +36,7 @@ Game::Game(int n)
 void Game::run()
 {
 	iplayer = players.begin();
-	while (ganador>(*iplayer).score) {//verifica si el puntaje del ganador de la anterior ronda, es sufuciente para nadar el juego
+	while (ganador>(*iplayer)->score) {//verifica si el puntaje del ganador de la anterior ronda, es sufuciente para nadar el juego
 		//barajea el mazo
 		barajar();
 		//repartir cartas
@@ -44,7 +44,7 @@ void Game::run()
 		CNode<int, char>* carta;
 		for (int i = 0; i < 8 * numbPlayers; i++) {
 			carta = mazo.pop();
-			(*iplayer).mano.insertarNodo(carta);
+			(*iplayer)->mano.insertarNodo(carta);
 			++iplayer;
 		}
 		//Carta al mazo de descarte
@@ -54,7 +54,7 @@ void Game::run()
 		iplayer.i->n_data.state = false;
 		iplayer = players.begin();//para q el juego siempre comienze con el primer jugador
 		render();
-		while ((*iplayer).state !=true)
+		while ((*iplayer)->state !=true)
 		{
 			processEvents();
 			update();
@@ -103,7 +103,7 @@ void Game::processEvents()
 					int temp;
 					cin >> temp;
 					auxi = nullptr;
-					if (!((*iplayer).mano.position(temp, auxi)))//verificar lista
+					if (!((*iplayer)->mano.position(temp, auxi)))//verificar lista
 						cout << "NO EXISTE ESTA POSICION EN LA MANO" << endl;
 					else if (auxi->n_data == valorC || auxi->n_palo == paloC)
 						playCarta = true;
@@ -141,12 +141,12 @@ void Game::update()
 		addcarta = 0;
 		estadoJuego = false;
 		terminar_jugada = false;
-		if ((*iplayer).state != true)//para asegurarme q el iplayer q salga del while sea el ganador de la primera ronda;
+		if ((*iplayer)->state != true)//para asegurarme q el iplayer q salga del while sea el ganador de la primera ronda;
 			++iplayer;
 	}
 	if (playCarta)
 	{
-		cartMesa.push((*iplayer).mano.eliminarNodo(auxi));
+		cartMesa.push((*iplayer)->mano.eliminarNodo(auxi));
 		paloC = cartMesa.cabeza->dato->n_palo;
 		valorC = cartMesa.cabeza->dato->n_data;
 		if (valorC == 8)
@@ -166,7 +166,7 @@ void Game::update()
 	{
 		if(!mazo.vacia()) {
 			CNode<int, char>* carta= mazo.pop();
-			(*iplayer).mano.insertarNodo(carta);
+			(*iplayer)->mano.insertarNodo(carta);
 		}
 	}
 }
@@ -175,17 +175,17 @@ void Game::render()
 	if (estadoJuego == false)
 	{
 		cout << "Carta en mesa:     " <<valorC<<paloC<< endl<<endl;
-		cout << (*iplayer).cp_name << endl;
+		cout << (*iplayer)->cp_name << endl;
 		cout << "---------------------" << endl;
 	}
 	else
 	{
 		cout << "Carta en mesa:     " << valorC << paloC << endl << endl;
-		cout << (*iplayer).cp_name << endl;
-		cout << (*iplayer).cp_name << endl;
+		cout << (*iplayer)->cp_name << endl;
+		cout << (*iplayer)->cp_name << endl;
 
 		cout << "Mano jugador:" << endl;
-		(*iplayer).mano.recorrer();
+		(*iplayer)->mano.recorrer();
 		cout << endl << endl;
 	}
 }

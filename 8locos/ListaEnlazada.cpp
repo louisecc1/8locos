@@ -5,7 +5,7 @@
 
 using namespace std;
 
-template<class T, class S, class C>
+/*template<class T, class S, class C>
 ListaEnlazada<T, S, C>::~ListaEnlazada() {
 	CNode<T, S> *temp;
 	CNode<T,S>* pNodo = cabeza;
@@ -14,7 +14,7 @@ ListaEnlazada<T, S, C>::~ListaEnlazada() {
 		pNodo = pNodo->n_next;
 		delete temp;
 	}
-}
+}*/
 
 //Compatibilidad----------------------------------------------------------------
 template<class T, class S, class C>
@@ -50,7 +50,7 @@ bool ListaEnlazada<T, S, C>::insertar(T valor,S palo) {
 
 
 template<class T, class S, class C>
-bool ListaEnlazada<T, S, C>::insertarNodo(CNode<T, S> *&pInfo) {
+bool ListaEnlazada<T, S, C>::insertarNodo(CNode<T, S> *pInfo) {
 	CNode<T, S>** pNodo;
 	if (buscarNodo(pInfo, pNodo))
 		return 0;

@@ -11,7 +11,6 @@ public:
 	CPlayer() { state = score = 0; }
 	CPlayer(string);
 	void verMano();
-	void ocultarMano();
 	int getNumCartas();
 	
 	string cp_name;
