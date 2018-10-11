@@ -35,7 +35,7 @@ Game::Game(int n)
 }
 void Game::run()
 {
-//	iplayer = players.begin();
+	iplayer = players.begin();
 	//cout << (*iplayer).score << endl;
 	while (ganador>=(*iplayer).score) {//verifica si el puntaje del ganador de la anterior ronda, es sufuciente para nadar el juego
 		//barajea el mazo
