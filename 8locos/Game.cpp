@@ -88,6 +88,24 @@ void Game::update()
 				
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		//////////////////////////
 		paloC = CartMesa.cola->dato->n_palo;
 		valorC = CartMesa.cola->dato->n_data;
@@ -107,8 +125,52 @@ void Game::update()
 	if (addcarta) 
 	{
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 	}
 }
 void Game::render()
 {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
