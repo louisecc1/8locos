@@ -3,10 +3,12 @@
 #include "pch.h"
 #include "Game.h"
 #include <iostream>
+
 using namespace std;
+
 Game::Game(int n)
 	:players(),numbPlayers(n),ganador(50*n),iplayer(players.begin())
-{	
+{
 	playCarta = false;
 	addcarta = false;
 	for (int i = 0; i <= 12; i++) {
@@ -90,7 +92,7 @@ void Game::processEvents()
 		//addcarta = false;
 		if (playCarta == false || addcarta == false)
 		{
-			while (playCarta || addcarta)
+			while (!playCarta || !addcarta)
 			{
 				cout << "AGREGAR UNA CARTA : ingrese 0" << endl;
 				cout << "JUGAR UNA CARTA   : ingrese 1" << endl;
@@ -178,7 +180,6 @@ void Game::render()
 	else
 	{
 		cout << "Carta en mesa:     " << valorC << paloC << endl << endl;
-		cout << (*iplayer).cp_name << endl;
 		cout << (*iplayer).cp_name << endl;
 
 		cout << "Mano jugador:" << endl;
