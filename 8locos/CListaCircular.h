@@ -33,9 +33,9 @@ public:
 		i = i->n_next;
 		return this;
 	}
-	T operator*()
+	T* operator*()
 	{
-		return i->n_data;
+		return &(i->n_data);
 	}
 };
 template<class T>

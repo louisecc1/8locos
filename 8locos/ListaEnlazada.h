@@ -7,11 +7,11 @@ class ListaEnlazada
 	C cM;
 public:
 	CNode<T, S> *cabeza = 0;
-	~ListaEnlazada();
+	//~ListaEnlazada();
 	bool buscar(T,S,CNode<T,S> **&);
 	bool buscarNodo(CNode<T,S>*&,CNode<T, S> **&);
 	bool insertar(T,S);
-	bool insertarNodo(CNode<T, S>*&);
+	bool insertarNodo(CNode<T, S>*);
 	bool eliminar(T,S);
 	CNode<T, S>* eliminarNodo(CNode<T, S>*);
 	void recorrer();
