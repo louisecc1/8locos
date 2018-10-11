@@ -147,6 +147,7 @@ void Game::update()
 	}
 	if (playCarta)
 	{
+
 		cartMesa.push((*iplayer)->mano.eliminarNodo(auxi));
 		paloC = cartMesa.cabeza->dato->n_palo;
 		valorC = cartMesa.cabeza->dato->n_data;
