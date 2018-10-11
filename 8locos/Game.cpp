@@ -118,7 +118,7 @@ void Game::processEvents()
 					break;
 				}
 			}
-		}
+		
 		 if (playCarta || addcarta==2)
 		{
 			cout << "PRESIONE 1 PARA ACABAR SU JUGADA" << endl;
