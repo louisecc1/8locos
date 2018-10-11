@@ -59,6 +59,7 @@ void Game::run()
 			processEvents();
 			update();
 			render();
+
 		}
 	}
 }

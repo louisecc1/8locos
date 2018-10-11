@@ -25,6 +25,7 @@ private:
 	Cola<CNode<int, char>*> mazo;
 	Pila<CNode<int, char>*> cartMesa;//son las cartas volteadas en la mesa//es decir la pila de descarte;
 
+
 	const int numbPlayers;
 	const int ganador;
 	bool estadoJuego=false;//para q un jugador empieze su turno;
