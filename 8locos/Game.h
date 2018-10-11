@@ -1,4 +1,5 @@
-#pragma once 
+#pragma once
+#include <time.h>
 #include "CListaCircular.h"
 #include "CPlayer.h"
 #include "CNode.h"
