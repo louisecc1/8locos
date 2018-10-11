@@ -12,7 +12,7 @@ public:
 	CPlayer(string);
 	void verMano();
 	void ocultarMano();
-	void getNumCartas();
+	int getNumCartas();
 	
 	string cp_name;
 	int score;

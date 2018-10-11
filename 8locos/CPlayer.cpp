@@ -11,3 +11,8 @@ CPlayer::CPlayer(string name)
 void CPlayer::verMano() {
 	mano.recorrer();
 }
+
+int CPlayer::getNumCartas() {
+	int cnt = 0;
+	CNode<int,char> **pNodo=&(mano.)
+}

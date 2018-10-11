@@ -31,7 +31,8 @@ T Pila<T>::pop() {
 		val = temp->dato;
 		cabeza = cabeza->siguiente;
 	}
-	delete temp;
+	//delete temp;
+	temp->siguiente = 0;
 	return val;
 }
 template int Pila<int>::pop();
