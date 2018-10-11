@@ -87,8 +87,12 @@ CNode<T, S>* ListaEnlazada<T, S, C>::eliminarNodo(CNode<T, S>* pInfo) {
 
 template<class  T, class S, class C>
 void ListaEnlazada<T, S, C>::recorrer() {
-	for (CNode<T,S>** pNodo = &cabeza; *pNodo; pNodo = &((*pNodo)->n_next))
-		cout << (*pNodo)->n_data<< (char)((*pNodo)->n_palo) << endl;
+	int cnt = 1;
+	for (CNode<T, S>** pNodo = &cabeza; *pNodo; pNodo = &((*pNodo)->n_next)) {
+		cout << cnt<<") "<<(*pNodo)->n_data << (char)((*pNodo)->n_palo) << endl;
+		cnt++;
+	}
+		
 	//cout << endl;
 }
 
