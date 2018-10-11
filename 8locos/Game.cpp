@@ -73,7 +73,7 @@ void Game::processEvents()
 		valorC = cartMesa.cola->dato->n_data;
 	}
 	
-	render();
+	//render();
 	if (estadoJuego == false)
 	{
 		
@@ -135,15 +135,6 @@ void Game::processEvents()
 }
 void Game::update()
 {
-	if (terminar_jugada)
-	{
-		playCarta = false;
-		addcarta = 0;
-		estadoJuego = false;
-		terminar_jugada = false;
-		if ((*iplayer)->state != true)//para asegurarme q el iplayer q salga del while sea el ganador de la primera ronda;
-			++iplayer;
-	}
 	if (playCarta)
 	{
 		cartMesa.push((*iplayer)->mano.eliminarNodo(auxi));
@@ -169,6 +160,15 @@ void Game::update()
 			(*iplayer)->mano.insertarNodo(carta);
 		}
 	}
+	if (terminar_jugada)
+	{
+		playCarta = false;
+		addcarta = 0;
+		estadoJuego = false;
+		terminar_jugada = false;
+		if ((*iplayer)->state != true)//para asegurarme q el iplayer q salga del while sea el ganador de la primera ronda;
+			++iplayer;
+	}
 }
 void Game::render()
 {
@@ -181,7 +181,6 @@ void Game::render()
 	else
 	{
 		cout << "Carta en mesa:     " << valorC << paloC << endl << endl;
-		cout << (*iplayer)->cp_name << endl;
 		cout << (*iplayer)->cp_name << endl;
 
 		cout << "Mano jugador:" << endl;
