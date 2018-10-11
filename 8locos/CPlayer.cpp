@@ -14,5 +14,8 @@ void CPlayer::verMano() {
 
 int CPlayer::getNumCartas() {
 	int cnt = 0;
-	CNode<int, char> **pNodo = &(mano);
+	for (CNode<int, char> **pNodo = &(mano.cabeza); *pNodo; pNodo = &((*pNodo)->n_next)) {
+		cnt++;
+	}
+	return cnt;
 }
