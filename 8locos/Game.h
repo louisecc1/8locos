@@ -28,7 +28,7 @@ private:
 	bool estadoJuego=false;//para q un jugador empieze su turno;
 	CNode<int, char>* auxi;//para poder buscar una posicion
 	bool playCarta=false;
-	bool addcarta=false;
+	int addcarta=0;
 	bool terminar_jugada = false;
 	int valorC;//valor nodo
 	char  paloC;//palo nodo
