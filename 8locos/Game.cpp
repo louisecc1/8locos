@@ -3,12 +3,10 @@
 #include "pch.h"
 #include "Game.h"
 #include <iostream>
-
 using namespace std;
-
 Game::Game(int n)
 	:players(),numbPlayers(n),ganador(50*n),iplayer(players.begin())
-{
+{	
 	playCarta = false;
 	addcarta = false;
 	for (int i = 0; i <= 12; i++) {
@@ -90,9 +88,8 @@ void Game::processEvents()
 	{
 		//playCarta = false;
 		//addcarta = false;
-		if (playCarta == false || addcarta == false)
-		{
-			while (!playCarta || !addcarta)
+			//while (playCarta || addcarta)
+			while(!playCarta)
 			{
 				cout << "AGREGAR UNA CARTA : ingrese 0" << endl;
 				cout << "JUGAR UNA CARTA   : ingrese 1" << endl;
@@ -113,15 +110,16 @@ void Game::processEvents()
 				}
 				else
 				{
-					if (addcarta == true)
+					if (addcarta == 1)
 					{
 						cout << "USTED YA NO PUEDE AGREGAR SU UNA CARTA EN ESTA RONDA" << endl;
 					}
-					addcarta = true;
+					++addcarta;
+					break;
 				}
 			}
 		}
-		else if (playCarta || addcarta)
+		 if (playCarta || addcarta==2)
 		{
 			cout << "PRESIONE 1 PARA ACABAR SU JUGADA" << endl;
 			int temp = 1;
@@ -138,7 +136,7 @@ void Game::update()
 	if (terminar_jugada)
 	{
 		playCarta = false;
-		addcarta = false;
+		addcarta = 0;
 		estadoJuego = false;
 		if ((*iplayer).state != true)//para asegurarme q el iplayer q salga del while sea el ganador de la primera ronda;
 			++iplayer;
@@ -180,6 +178,7 @@ void Game::render()
 	else
 	{
 		cout << "Carta en mesa:     " << valorC << paloC << endl << endl;
+		cout << (*iplayer).cp_name << endl;
 		cout << (*iplayer).cp_name << endl;
 
 		cout << "Mano jugador:" << endl;
