@@ -43,4 +43,3 @@ bool Pila<T>::vacia() {
 }
 template bool Pila<int>::vacia();
 
-template<class T>

@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "pch.h"
 #include "Game.h"
+#include <iostream>
+using namespace std;
 Game::Game(int n)
 	:players(),numbPlayers(n),ganador(50*n),iplayer(players.begin())
 {	
@@ -41,7 +43,7 @@ void Game::run()
 		for (int i = 0; i < 8 * numbPlayers; i++) {
 			carta = mazo.pop();
 			(*iplayer).mano.insertarNodo(carta);
-			iplayer++;
+			++iplayer;
 		}
 		//Carta al mazo de descarte
 		cartMesa.push(mazo.pop());
@@ -55,8 +57,6 @@ void Game::run()
 			processEvents();
 			update();
 			render();
-			if ((*iplayer).state != true)//para asegurarme q el iplayer q salga del while sea el ganador de la primera ronda;
-				++iplayer;
 		}
 	}
 }
@@ -70,35 +70,77 @@ void Game::processEvents()
 		paloC = cartMesa.cola->dato->n_palo;
 		valorC = cartMesa.cola->dato->n_data;
 	}
+	
 	render();
-	playCarta=false;
-	addcarta=false;
-	while (playCarta || addcarta)
+	if (estadoJuego == false)
 	{
-		cout <<"AGREGAR UNA CARTA : ingrese 0" << endl;
-		cout <<"JUGAR UNA CARTA   : ingrese 1" <<endl;
-		bool temp(false);
-		cin >> temp;
-		if (temp)
+		
+		int temp=0;
+		
+		while (temp != 1)
 		{
-			cout << "ESCOJA LA POSICION DE LA CARTA QUE DESEA JUGAR" << endl;
-			int temp;
+			cout << "INGRESE 1 PARA COMENZAR SU TURNO" << endl;
 			cin >> temp;
-			auxi = nullptr;
-			if (!((*iplayer).mano.position(temp, auxi)))//verificar lista
-				cout << "NO EXISTE ESTA POSICION EN LA MANO" << endl;
-			else if (auxi->n_data == valorC || auxi->n_palo == paloC)
-				playCarta = true;
-			else
-				cout << "NO SE PUEDE AGREGAR ESTA CARTA" << endl;
 		}
-		else
-			addcarta = true;
+		estadoJuego = true;
 	}
-
+	else
+	{
+		//playCarta = false;
+		//addcarta = false;
+		if (playCarta == false || addcarta == false)
+		{
+			while (playCarta || addcarta)
+			{
+				cout << "AGREGAR UNA CARTA : ingrese 0" << endl;
+				cout << "JUGAR UNA CARTA   : ingrese 1" << endl;
+				bool temp(false);
+				cin >> temp;
+				if (temp)
+				{
+					cout << "ESCOJA LA POSICION DE LA CARTA QUE DESEA JUGAR" << endl;
+					int temp;
+					cin >> temp;
+					auxi = nullptr;
+					if (!((*iplayer).mano.position(temp, auxi)))//verificar lista
+						cout << "NO EXISTE ESTA POSICION EN LA MANO" << endl;
+					else if (auxi->n_data == valorC || auxi->n_palo == paloC)
+						playCarta = true;
+					else
+						cout << "NO SE PUEDE JUGAR ESTA CARTA" << endl;
+				}
+				else
+				{
+					if (addcarta == true)
+					{
+						cout << "USTED YA NO PUEDE AGREGAR SU UNA CARTA EN ESTA RONDA" << endl;
+					}
+					addcarta = true;
+				}
+			}
+		}
+		else if (playCarta || addcarta)
+		{
+			cout << "PRESIONE 1 PARA ACABAR SU JUGADA" << endl;
+			int temp = 1;
+			while (temp != 1)
+			{
+				cin >> temp;
+			}
+			terminar_jugada = true;
+		}
+	}
 }
 void Game::update()
 {
+	if (terminar_jugada)
+	{
+		playCarta = false;
+		addcarta = false;
+		estadoJuego = false;
+		if ((*iplayer).state != true)//para asegurarme q el iplayer q salga del while sea el ganador de la primera ronda;
+			++iplayer;
+	}
 	if (playCarta)
 	{
 		cartMesa.push((*iplayer).mano.eliminarNodo(auxi));
@@ -127,10 +169,22 @@ void Game::update()
 }
 void Game::render()
 {
-	cout << "Carta en mesa:     " <<valorC<<paloC<< endl<<endl;
-	cout << "Mano jugador:" << endl;
-	(*iplayer).mano.recorrer();
-	cout << endl << endl;
+	if (estadoJuego == false)
+	{
+		cout << "Carta en mesa:     " <<valorC<<paloC<< endl<<endl;
+		cout << (*iplayer).cp_name << endl;
+		cout << "---------------------" << endl;
+	}
+	else
+	{
+		cout << "Carta en mesa:     " << valorC << paloC << endl << endl;
+		cout << (*iplayer).cp_name << endl;
+		cout << (*iplayer).cp_name << endl;
+
+		cout << "Mano jugador:" << endl;
+		(*iplayer).mano.recorrer();
+		cout << endl << endl;
+	}
 }
 
 void Game::barajar() {
