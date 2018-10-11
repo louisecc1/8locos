@@ -2,6 +2,7 @@
 #include <time.h>
 #include "CListaCircular.h"
 #include "CPlayer.h"
+#include <time.h>
 #include "CNode.h"
 #include "ListaEnlazada.h"
 #include "Cola.h"
