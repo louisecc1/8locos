@@ -107,7 +107,7 @@ bool ListaEnlazada<T, S, C> ::position(int n,CNode<T,S> *&p)
 	CNode<T, S>** pNodo = &cabeza;
 	while (*pNodo && --n)
 	{
-		pNodo = &((*pNodo)->n_next)
+		pNodo = &((*pNodo)->n_next);
 	}
 	p = (*pNodo);			//nose muy bn si esto esta bn dale un chequeada;
 	return *pNodo;
