@@ -1,9 +1,10 @@
+#include <iostream>
 #include <time.h>
 #include <stdlib.h>
 #include "pch.h"
 #include "Game.h"
-#include <iostream>
 using namespace std;
+
 Game::Game(int n)
 	:players(),numbPlayers(n),ganador(50*n),iplayer(players.begin())
 {	

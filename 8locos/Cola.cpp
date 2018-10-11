@@ -41,7 +41,9 @@ bool Cola<T>::vacia() {
 
 template<class T>
 void Cola<T>::vaciarCola() {
-	cola ->siguiente = 0;
-	cabeza = 0;
-	cola = 0;
+	if(cola){
+		cola->siguiente = 0;
+		cabeza = 0;
+		cola = 0;
+	}
 }
