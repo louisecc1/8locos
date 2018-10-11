@@ -138,6 +138,7 @@ void Game::update()
 		playCarta = false;
 		addcarta = 0;
 		estadoJuego = false;
+		terminar_jugada = false;
 		if ((*iplayer).state != true)//para asegurarme q el iplayer q salga del while sea el ganador de la primera ronda;
 			++iplayer;
 	}
