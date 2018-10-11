@@ -29,11 +29,19 @@ T Cola<T>::pop() {
 		val = cabeza->dato;
 		cabeza = cabeza->siguiente;
 	}
-	delete temp;
+	temp->siguiente = 0;
+	//delete temp;
 	return val;
 }
 
 template<class T>
 bool Cola<T>::vacia() {
 	return (cabeza == 0);
+}
+
+template<class T>
+void Cola<T>::vaciarCola() {
+	cola - >siguiente = 0;
+	cabeza = 0;
+	cola = 0;
 }

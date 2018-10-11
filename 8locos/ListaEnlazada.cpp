@@ -73,12 +73,14 @@ bool ListaEnlazada<T, S, C>::eliminar(T valor,S palo) {
 }
 
 template<class T, class S, class C>
-CNode<T, S>* ListaEnlazada<T, S, C>::eliminarNodo(CNode<T, S>*& pInfo) {
+CNode<T, S>* ListaEnlazada<T, S, C>::eliminarNodo(CNode<T, S>* pInfo) {
 	CNode<T, S>** pNodo;
 	if (!buscarNodo(pInfo, pNodo))
 		return 0;
 	//CNode<T, S>* temp = *pNodo;
-	*pNodo = pInfo->n_next;
+	pInfo = (*pNodo);
+	*pNodo = (*pNodo)->n_next;
+	pInfo->n_next = 0;
 	//delete temp;
 	return pInfo;
 }
@@ -86,10 +88,11 @@ CNode<T, S>* ListaEnlazada<T, S, C>::eliminarNodo(CNode<T, S>*& pInfo) {
 template<class  T, class S, class C>
 void ListaEnlazada<T, S, C>::recorrer() {
 	for (CNode<T,S>** pNodo = &cabeza; *pNodo; pNodo = &((*pNodo)->n_next))
-		cout << (*pNodo)->n_data<< (char)((*pNodo)->n_palo) << " | ";
-	cout << endl;
+		cout << (*pNodo)->n_data<< (char)((*pNodo)->n_palo) << endl;
+	//cout << endl;
 }
 
+//Compatibilidad----------------------------------------------------------------
 template<class  T, class S, class C>
 void ListaEnlazada<T, S, C>::verPosibles(T valor,S palo,T loco) {
 	for (CNode<T,S>** pNodo = &cabeza; *pNodo; pNodo = &((*pNodo)->n_next)) {

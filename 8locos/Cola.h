@@ -9,6 +9,7 @@ public:
 	NodoSimple<T>*cola = 0;
 	void push(T);
 	T pop();
+	void vaciarCola();
 	bool vacia();
 };
 template Cola<CNode<int, char>*>;
